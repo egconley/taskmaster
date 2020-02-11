@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">taskmaster</string>
+    <string name="my_tasks">My Tasks</string>
+    <string name="add_task">Add Task</string>
+    <string name="all_tasks">All Tasks</string>
+    <string name="add_a_task">Add a Task</string>
+    <string name="taskmaster">taskmaster</string>
+    <string name="my_task">My Task</string>
+    <string name="task_title">Task title</string>
+    <string name="do_something">Do something</string>
+    <string name="task_description">Task Description</string>
+</resources>
