@@ -7,11 +7,11 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/myTasksHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/my_tasks"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.366"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -51,8 +51,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Deliverables"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/myTasksHeader"
+        app:layout_constraintTop_toBottomOf="@+id/myTasksHeader" />
 
     <Button
         android:id="@+id/task2Button"
@@ -71,5 +71,18 @@
         android:text="Streamline"
         app:layout_constraintStart_toStartOf="@+id/task2Button"
         app:layout_constraintTop_toBottomOf="@+id/task2Button" />
+
+    <ImageButton
+        android:id="@+id/settingsButton"
+        style="@style/Widget.AppCompat.ImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="?android:attr/panelBackground"
+        android:tint="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_preferences" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

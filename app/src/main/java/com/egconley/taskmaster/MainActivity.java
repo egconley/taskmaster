@@ -3,11 +3,17 @@ package com.egconley.taskmaster;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+
+import java.util.Iterator;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +23,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ImageButton settingsButton = findViewById(R.id.settingsButton);
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToSettings = new Intent(MainActivity.this, Settings.class);
+
+                startActivity(goToSettings);
+            }
+        });
 
         Button addTaskButton = findViewById(R.id.addTaskButton);
 
@@ -82,4 +99,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG, "resumed");
+
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String username = sharedPreferences.getString("username", null);
+
+        TextView myTasksHeader = findViewById(R.id.myTasksHeader);
+
+        String myTasksHeaderText = username + "\'s Tasks";
+
+        if (username!=null) {
+            myTasksHeader.setText(myTasksHeaderText);
+        }
+
+    }
+
 }
