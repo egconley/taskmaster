@@ -1,16 +1,14 @@
-package com.example.taskmaster;
+package com.egconley.taskmaster;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class AddATask extends AppCompatActivity {
-
-    //comment
+public class AllTasks extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_atask);
+        setContentView(R.layout.activity_all_tasks);
     }
 }
