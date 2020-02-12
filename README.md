@@ -1,5 +1,5 @@
 # taskmaster
-![homepage](screenshots/mytasks2.1.png)
+![homepage](screenshots/myTasks2.1.png)
 
 ## 2/11/2020
 
