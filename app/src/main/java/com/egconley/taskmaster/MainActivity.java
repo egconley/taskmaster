@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
         Intent goToTaskDetail = new Intent(MainActivity.this, TaskDetail.class);
 
         goToTaskDetail.putExtra("taskName", task.getTitle());
+        goToTaskDetail.putExtra("taskBody", task.getBody());
 
         Log.v(TAG, task.getTitle());
 
