@@ -5,17 +5,17 @@ Android app that allows user to keep track of tasks.
 
 ## 2/13/2020
 - [X] Task Model
-    - [X] Create a Task class. A Task should have a title, a body, and a state. The state should be one of “new”, “assigned”, “in progress”, or “complete”.
+    - [X] Task class with title, a body, and a state(“new”, “assigned”, “in progress”, or “complete”)
 
 - [X] Homepage
-    - [X] Refactor homepage to use a RecyclerView for displaying hard coded Task data.
-    - [ ] Ensure that you can tap on any one of the Tasks in the RecyclerView, and it will appropriately launch the detail page with the correct Task title displayed.
+    - [X] homepage uses a RecyclerView for displaying hard coded Task data
+    - [X] ability to tap on any one of the Tasks in the RecyclerView, launches the detail page with the correct Task title/body.
 
 ## 2/12/2020
 - [X] Homepage
     - [X] heading at the top of the page, 
     - [X] an image to mock the “my tasks” view
-    - [ ] buttons at the bottom of the page to allow going to the “add tasks” and “all tasks” page
+    - [X] buttons at the bottom of the page to allow going to the “add tasks” and “all tasks” page
 
 - [X] Add a Task
     - [X] allow users to type in details about a new task, specifically a title and a body
