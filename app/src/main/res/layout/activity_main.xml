@@ -45,33 +45,6 @@
         app:layout_constraintTop_toTopOf="@+id/addTaskButton"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/task1Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Deliverables"
-        app:layout_constraintStart_toStartOf="@+id/myTasksHeader"
-        app:layout_constraintTop_toBottomOf="@+id/myTasksHeader" />
-
-    <Button
-        android:id="@+id/task2Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Proposal"
-        app:layout_constraintStart_toStartOf="@+id/task1Button"
-        app:layout_constraintTop_toBottomOf="@+id/task1Button" />
-
-    <Button
-        android:id="@+id/task3Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Streamline"
-        app:layout_constraintStart_toStartOf="@+id/task2Button"
-        app:layout_constraintTop_toBottomOf="@+id/task2Button" />
-
     <ImageButton
         android:id="@+id/settingsButton"
         style="@style/Widget.AppCompat.ImageButton"
@@ -84,5 +57,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_preferences" />
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.egconley.taskmaster.TaskFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/addTaskButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myTasksHeader" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
