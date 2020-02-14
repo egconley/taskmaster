@@ -31,18 +31,23 @@ public class TaskDetail extends AppCompatActivity {
 
         // https://stackoverflow.com/questions/5968896/listing-all-extras-of-an-intent
         Bundle extras = getIntent().getExtras();
+
         Set<String> ks = extras.keySet();
         Iterator<String> iterator = ks.iterator();
         while (iterator.hasNext()) {
             Log.d(TAG + "KEY", iterator.next());
         }
 
-        String taskName = getIntent().getStringExtra("taskName");
-
-//        Log.v(TAG, taskDetail);
-
+        //        String taskName = getIntent().getStringExtra("taskName");
+        String taskName = extras.getString("taskName");
         TextView taskTitle = findViewById(R.id.taskDetailTitle);
         taskTitle.setText(taskName);
+
+        //        String taskBodyContent = getIntent().getStringExtra("taskBody");
+        String taskBodyContent = extras.getString("taskBody");
+        Log.d(TAG, taskBodyContent);
+        TextView taskBody = findViewById(R.id.taskDetailBody);
+        taskBody.setText(taskBodyContent);
     }
 
 }

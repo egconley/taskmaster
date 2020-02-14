@@ -27,7 +27,7 @@ public class TaskFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-//    private OnListFragmentInteractionListener mListener;
+    private OnListFragmentInteractionListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -69,7 +69,7 @@ public class TaskFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyTaskRecyclerViewAdapter(TaskContent.TASK_LIST, null));
+            recyclerView.setAdapter(new MyTaskRecyclerViewAdapter(TaskContent.TASK_LIST, mListener));
         }
         return view;
     }
@@ -78,12 +78,12 @@ public class TaskFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnListFragmentInteractionListener) {
-//            mListener = (OnListFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnListFragmentInteractionListener");
-//        }
+        if (context instanceof OnListFragmentInteractionListener) {
+            mListener = (OnListFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnListFragmentInteractionListener");
+        }
     }
 
     @Override

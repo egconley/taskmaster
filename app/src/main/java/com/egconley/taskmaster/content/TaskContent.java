@@ -42,7 +42,7 @@ public class TaskContent {
 
         //int task_number, String title, String body, String state
         //state should be one of “new”, “assigned”, “in progress”, or “complete”.
-        String[][] sampleTasks = { {"Deliver revjew","productize the deliverables and focus on the bottom line", "assigned"}, {"Cloud strategy", "Sea change where the metal hits the meat.", "in progress"}, {"Synergize product", "Manage that low hanging fruit.", "new"} };
+        String[][] sampleTasks = { {"Deliver review","productize the deliverables and focus on the bottom line", "assigned"}, {"Cloud strategy", "Sea change where the metal hits the meat.", "in progress"}, {"Synergize product", "Manage that low hanging fruit.", "new"} };
 
         return new Task(task_number + 1, sampleTasks[task_number][0], sampleTasks[task_number][1], sampleTasks[task_number][2]);
     }

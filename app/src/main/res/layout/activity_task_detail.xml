@@ -10,24 +10,27 @@
         android:id="@+id/taskDetailTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
         android:layout_marginTop="64dp"
+        android:layout_marginEnd="64dp"
         android:text="Task Detail"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintHorizontal_bias="0.254"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="289dp"
+        android:id="@+id/taskDetailBody"
+        android:layout_width="256dp"
         android:layout_height="108dp"
-        android:layout_marginStart="64dp"
         android:layout_marginEnd="64dp"
         android:text="UI timeframe we need to leverage our synergies. All hands on deck. Teams were able to drive adoption and awareness not a hill to die on but what's the real problem we're trying to solve here?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/taskDetailTitle"
         app:layout_constraintTop_toBottomOf="@+id/taskDetailTitle"
-        app:layout_constraintVertical_bias="0.511" />
+        app:layout_constraintVertical_bias="0.088" />
 </androidx.constraintlayout.widget.ConstraintLayout>

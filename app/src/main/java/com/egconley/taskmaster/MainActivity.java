@@ -12,10 +12,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.egconley.taskmaster.content.Task;
+
 import java.util.Iterator;
 import java.util.Set;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TaskFragment.OnListFragmentInteractionListener {
 
     String TAG = "egc.main";
 
@@ -119,4 +121,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onListFragmentInteraction(Task task) {
+        Intent goToTaskDetail = new Intent(MainActivity.this, TaskDetail.class);
+
+        goToTaskDetail.putExtra("taskName", task.getTitle());
+        goToTaskDetail.putExtra("taskBody", task.getBody());
+
+        Log.v(TAG, task.getTitle());
+
+        startActivity(goToTaskDetail);
+
+    }
 }
