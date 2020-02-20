@@ -12,7 +12,13 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.egconley.taskmaster.content.Task;
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.GraphQLResponse;
+import com.amplifyframework.api.graphql.MutationType;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.core.ResultListener;
+import com.amplifyframework.datastore.generated.model.Task;
 
 import java.util.Iterator;
 import java.util.Set;
@@ -25,6 +31,14 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        try {
+            Amplify.addPlugin(new AWSApiPlugin());
+            Amplify.configure(getApplicationContext());
+            Log.i("AmplifyGetStarted", "Amplify is all setup and ready to go!");
+        } catch (AmplifyException exception) {
+            Log.e("AmplifyGetStarted", exception.getMessage());
+        }
 
         ImageButton settingsButton = findViewById(R.id.settingsButton);
 
@@ -57,49 +71,6 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
             }
         });
 
-//        final Button task1Button = findViewById(R.id.task1Button);
-//
-//        task1Button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent goToTaskDetail = new Intent(MainActivity.this, TaskDetail.class);
-//
-//                goToTaskDetail.putExtra("taskName", task1Button.getText().toString());
-//
-//                Log.v(TAG, task1Button.getText().toString());
-//
-//                startActivity(goToTaskDetail);
-//            }
-//        });
-//
-//        final Button task2Button = findViewById(R.id.task2Button);
-//
-//        task2Button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent goToTaskDetail = new Intent(MainActivity.this, TaskDetail.class);
-//                goToTaskDetail.putExtra("taskName", task2Button.getText().toString());
-//
-//                Log.v(TAG, task2Button.getText().toString());
-//
-//                startActivity(goToTaskDetail);
-//            }
-//        });
-//
-//        final Button task3Button = findViewById(R.id.task3Button);
-//
-//        task3Button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent goToTaskDetail = new Intent(MainActivity.this, TaskDetail.class);
-//
-//                goToTaskDetail.putExtra("taskName", task3Button.getText().toString());
-//
-//                Log.v(TAG, task3Button.getText().toString());
-//
-//                startActivity(goToTaskDetail);
-//            }
-//        });
     }
 
     @Override
@@ -121,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
 
     }
 
-    @Override
     public void onListFragmentInteraction(Task task) {
         Intent goToTaskDetail = new Intent(MainActivity.this, TaskDetail.class);
 
