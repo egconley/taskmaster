@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.amazonaws.mobile.config.AWSConfiguration;
+import com.amazonaws.mobileconnectors.appsync.AWSAppSyncClient;
 import com.egconley.taskmaster.content.Task;
 
 import java.util.Iterator;
@@ -21,10 +23,17 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
 
     String TAG = "egc.main";
 
+    private AWSAppSyncClient mAWSAppSyncClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mAWSAppSyncClient = AWSAppSyncClient.builder()
+                .context(getApplicationContext())
+                .awsConfiguration(new AWSConfiguration(getApplicationContext()))
+                .build();
 
         ImageButton settingsButton = findViewById(R.id.settingsButton);
 
