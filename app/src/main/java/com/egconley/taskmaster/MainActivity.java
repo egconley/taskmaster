@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.amazonaws.mobile.config.AWSConfiguration;
+import com.amazonaws.mobileconnectors.appsync.AWSAppSyncClient;
 import com.egconley.taskmaster.content.Task;
 
 import java.util.Iterator;
@@ -21,10 +23,17 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
 
     String TAG = "egc.main";
 
+    private AWSAppSyncClient mAWSAppSyncClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mAWSAppSyncClient = AWSAppSyncClient.builder()
+                .context(getApplicationContext())
+                .awsConfiguration(new AWSConfiguration(getApplicationContext()))
+                .build();
 
         ImageButton settingsButton = findViewById(R.id.settingsButton);
 
@@ -56,50 +65,6 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
                 startActivity(goToAllTasks);
             }
         });
-
-//        final Button task1Button = findViewById(R.id.task1Button);
-//
-//        task1Button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent goToTaskDetail = new Intent(MainActivity.this, TaskDetail.class);
-//
-//                goToTaskDetail.putExtra("taskName", task1Button.getText().toString());
-//
-//                Log.v(TAG, task1Button.getText().toString());
-//
-//                startActivity(goToTaskDetail);
-//            }
-//        });
-//
-//        final Button task2Button = findViewById(R.id.task2Button);
-//
-//        task2Button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent goToTaskDetail = new Intent(MainActivity.this, TaskDetail.class);
-//                goToTaskDetail.putExtra("taskName", task2Button.getText().toString());
-//
-//                Log.v(TAG, task2Button.getText().toString());
-//
-//                startActivity(goToTaskDetail);
-//            }
-//        });
-//
-//        final Button task3Button = findViewById(R.id.task3Button);
-//
-//        task3Button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent goToTaskDetail = new Intent(MainActivity.this, TaskDetail.class);
-//
-//                goToTaskDetail.putExtra("taskName", task3Button.getText().toString());
-//
-//                Log.v(TAG, task3Button.getText().toString());
-//
-//                startActivity(goToTaskDetail);
-//            }
-//        });
     }
 
     @Override
