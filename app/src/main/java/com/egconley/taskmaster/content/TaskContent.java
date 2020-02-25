@@ -1,18 +1,10 @@
 package com.egconley.taskmaster.content;
 
-import android.util.Log;
-
-import com.amplifyframework.api.graphql.GraphQLResponse;
-import com.amplifyframework.api.graphql.MutationType;
-import com.amplifyframework.core.Amplify;
-import com.amplifyframework.core.ResultListener;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.amplifyframework.datastore.generated.model.Task;
 /**
  * Helper class for providing sample content for user interfaces created by
  * Android template wizards.
@@ -37,47 +29,22 @@ public class TaskContent {
     static {
         // Add some sample items.
         for (int i = 0; i < COUNT; i++) {
-            addTask(createTask());
+            addTask(createTask(i));
         }
     }
 
     private static void addTask(Task task) {
-
-        Amplify.API.query(Task.class, new ResultListener<GraphQLResponse<Iterable<Task>>>() {
-            @Override
-            public void onResult(GraphQLResponse<Iterable<Task>> iterableGraphQLResponse) {
-                for(Task task : iterableGraphQLResponse.getData()) {
-                    Log.i("AmplifyGetStarted", "Task : " + task.getTitle());
-                }
-            }
-
-            @Override
-            public void onError(Throwable throwable) {
-                Log.e("AmplifyGetStarted", throwable.toString());
-            }
-        });
+        TASK_LIST.add(task);
+        TASK_MAP.put(task.title, task);
     }
 
-    private static Task createTask() {
+    private static Task createTask(int task_number) {
 
         //int task_number, String title, String body, String state
         //state should be one of “new”, “assigned”, “in progress”, or “complete”.
-//        String[][] sampleTasks = { {"Deliver review","productize the deliverables and focus on the bottom line", "assigned"}, {"Cloud strategy", "Sea change where the metal hits the meat.", "in progress"}, {"Synergize product", "Manage that low hanging fruit.", "new"} };
+        String[][] sampleTasks = { {"Deliver review","productize the deliverables and focus on the bottom line", "assigned"}, {"Cloud strategy", "Sea change where the metal hits the meat.", "in progress"}, {"Synergize product", "Manage that low hanging fruit.", "new"} };
 
-        Task task = com.amplifyframework.datastore.generated.model.Task.builder().title("My first task").body("The boyd of my first task").state("assigned").build();
-
-        Amplify.API.mutate(task, MutationType.CREATE, new ResultListener<GraphQLResponse<com.amplifyframework.datastore.generated.model.Task>>() {
-            @Override
-            public void onResult(GraphQLResponse<com.amplifyframework.datastore.generated.model.Task> taskGraphQLResponse) {
-                Log.i("AmplifyGetStarted", "Added task with id: " + taskGraphQLResponse.getData().getId());
-            }
-
-            @Override
-            public void onError(Throwable throwable) {
-                Log.e("AmplifyGetStarted", throwable.toString());
-            }
-        });
-        return task;
+        return new Task(task_number + 1, sampleTasks[task_number][0], sampleTasks[task_number][1], sampleTasks[task_number][2]);
     }
 
 //    private static String makeDetails(int position) {

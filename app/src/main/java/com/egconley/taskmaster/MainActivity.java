@@ -12,13 +12,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.amplifyframework.AmplifyException;
-import com.amplifyframework.api.aws.AWSApiPlugin;
-import com.amplifyframework.api.graphql.GraphQLResponse;
-import com.amplifyframework.api.graphql.MutationType;
-import com.amplifyframework.core.Amplify;
-import com.amplifyframework.core.ResultListener;
-import com.amplifyframework.datastore.generated.model.Task;
+
+import com.egconley.taskmaster.content.Task;
 
 import java.util.Iterator;
 import java.util.Set;
@@ -31,14 +26,6 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        try {
-            Amplify.addPlugin(new AWSApiPlugin());
-            Amplify.configure(getApplicationContext());
-            Log.i("AmplifyGetStarted", "Amplify is all setup and ready to go!");
-        } catch (AmplifyException exception) {
-            Log.e("AmplifyGetStarted", exception.getMessage());
-        }
 
         ImageButton settingsButton = findViewById(R.id.settingsButton);
 

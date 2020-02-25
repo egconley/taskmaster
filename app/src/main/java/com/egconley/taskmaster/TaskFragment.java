@@ -13,13 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.amplifyframework.api.graphql.GraphQLResponse;
-import com.amplifyframework.api.graphql.SubscriptionType;
-import com.amplifyframework.core.Amplify;
-import com.amplifyframework.core.StreamListener;
 import com.egconley.taskmaster.content.TaskContent;
-//import com.egconley.taskmaster.content.Task;
-import com.amplifyframework.datastore.generated.model.Task;
+import com.egconley.taskmaster.content.Task;
+
 
 /**
  * A fragment representing a list of Items.
@@ -75,7 +71,7 @@ public class TaskFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-//            recyclerView.setAdapter(new MyTaskRecyclerViewAdapter(TaskContent.TASK_LIST, mListener));
+            recyclerView.setAdapter(new MyTaskRecyclerViewAdapter(TaskContent.TASK_LIST, mListener));
         }
         return view;
     }

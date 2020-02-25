@@ -10,8 +10,7 @@ import android.widget.TextView;
 
 import com.egconley.taskmaster.TaskFragment.OnListFragmentInteractionListener;
 import com.egconley.taskmaster.content.TaskContent;
-//import com.egconley.taskmaster.content.Task;
-import com.amplifyframework.datastore.generated.model.Task;
+import com.egconley.taskmaster.content.Task;
 
 import java.util.List;
 
