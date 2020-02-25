@@ -26,30 +26,28 @@
 				"GraphQLAPIIdOutput": "zx2kmzwdebfm5nkbnmxkygss2q",
 				"GraphQLAPIEndpointOutput": "https://yfjkonsgk5ez3gmoyeln6zgbuu.appsync-api.us-west-2.amazonaws.com/graphql"
 			},
+			"lastPushTimeStamp": "2020-02-25T18:18:38.704Z",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-taskmaster-taskenv-112544-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apiamplifyDatasource"
-			},
-			"lastPushTimeStamp": "2020-02-20T20:27:38.307Z",
-			"lastPushDirHash": "wwOv8KtJs/TBVabK2EHcFbYmR9s="
+			}
 		}
 	},
 	"hosting": {
 		"S3AndCloudFront": {
 			"service": "S3AndCloudFront",
 			"providerPlugin": "awscloudformation",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/amplify-taskmaster-taskenv-112544-deployment/amplify-cfn-templates/hosting/template.json",
-				"logicalId": "hostingS3AndCloudFront"
-			},
-			"lastPushTimeStamp": "2020-02-20T20:27:38.307Z",
 			"output": {
 				"S3BucketSecureURL": "https://taskmaster-20200220122250-hostingbucket-taskenv.s3.amazonaws.com",
 				"WebsiteURL": "http://taskmaster-20200220122250-hostingbucket-taskenv.s3-website-us-west-2.amazonaws.com",
 				"Region": "us-west-2",
 				"HostingBucketName": "taskmaster-20200220122250-hostingbucket-taskenv"
 			},
-			"lastPushDirHash": "Ju1rRthlHrcePJ1zwgGv7+hPM8E="
+			"lastPushTimeStamp": "2020-02-25T18:18:38.706Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-taskmaster-taskenv-112544-deployment/amplify-cfn-templates/hosting/template.json",
+				"logicalId": "hostingS3AndCloudFront"
+			}
 		}
 	}
 }
