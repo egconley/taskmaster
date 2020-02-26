@@ -21,8 +21,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.22" />
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/addTaskButton"
+        app:layout_constraintStart_toStartOf="@+id/addTaskBody"
+        app:layout_constraintTop_toBottomOf="@+id/addTaskBody" />
+
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/addTaskButton"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,22 +46,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
+        android:autofillHints=""
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/my_task"
         app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/addTaskBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
+        android:autofillHints=""
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/do_something"
         app:layout_constraintStart_toStartOf="@+id/addTaskName"
-        app:layout_constraintTop_toBottomOf="@+id/addTaskName"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/addTaskName" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What's the task?"
+        app:layout_constraintBottom_toTopOf="@+id/addTaskName"
+        app:layout_constraintStart_toStartOf="@+id/addTaskName" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="0dp"
+        android:layout_height="17dp"
+        android:text="Include some details:"
+        app:layout_constraintBottom_toTopOf="@+id/addTaskBody"
+        app:layout_constraintStart_toStartOf="@+id/addTaskBody" />
 </androidx.constraintlayout.widget.ConstraintLayout>
