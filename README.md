@@ -36,10 +36,16 @@ Android app that allows user to keep track of tasks.
 - [X] Settings
     - [X] Settings page that allows users to enter a username and hit save.
 ## 2/26/2020
-- [X] modified Add Task form to save the data entered in as a Task to DynamoDB.
-- [X] refactored your homepage’s RecyclerView to display all Task entities in DynamoDB.
-- [X] second entity for a team, which has a name and a list of tasks
-- [X] updated tasks to be owned by a team
-- [X] hardcoded three teams by running a mutation three times
-- [X] modified Add Task form to include a teams spinner
+- [X] Tasks Are Cloudy
+    - [X] Using the amplify add api command, created a Task resource that replicates existing Task schema
+- [X] Add Task Form
+    - [X] modified Add Task form to save the data entered in as a Task to DynamoDB.
+    - [X] modified Add Task form to include a teams spinner
+- [X] Homepage
+    - [X] refactored your homepage’s RecyclerView to display all Task entities in DynamoDB.
+- [X] Tasks Are Owned By Teams
+    - [X] second entity for a team, which has a name and a list of tasks
+    - [X] updated tasks to be owned by a team
+    - [X] hardcoded three teams by running a mutation three times
+
     
