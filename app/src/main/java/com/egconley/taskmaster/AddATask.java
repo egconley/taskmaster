@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.amazonaws.amplify.generated.graphql.CreateTaskMutation;
+import com.amazonaws.amplify.generated.graphql.CreateTeamMutation;
+import com.amazonaws.amplify.generated.graphql.CreateTeamMutation;
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.appsync.AWSAppSyncClient;
 import com.apollographql.apollo.GraphQLCall;
@@ -19,6 +21,7 @@ import com.apollographql.apollo.exception.ApolloException;
 import javax.annotation.Nonnull;
 
 import type.CreateTaskInput;
+import type.CreateTeamInput;
 
 public class AddATask extends AppCompatActivity {
 
@@ -43,6 +46,8 @@ public class AddATask extends AppCompatActivity {
             public void onClick(View v) {
                 EditText newTaskTitle = findViewById(R.id.addTaskName);
                 EditText newTaskBody = findViewById(R.id.addTaskBody);
+
+
 
                 CreateTaskInput input = CreateTaskInput.builder()
                         .title(newTaskTitle.getText().toString())
