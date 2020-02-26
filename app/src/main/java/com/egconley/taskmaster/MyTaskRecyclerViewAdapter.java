@@ -8,25 +8,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.amazonaws.amplify.generated.graphql.ListTasksQuery;
 import com.egconley.taskmaster.TaskFragment.OnListFragmentInteractionListener;
-import com.egconley.taskmaster.content.TaskContent;
 import com.egconley.taskmaster.content.Task;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link Task} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
+
 public class MyTaskRecyclerViewAdapter extends RecyclerView.Adapter<MyTaskRecyclerViewAdapter.ViewHolder> {
 
     String TAG = "egc.MyTaskRecyclerViewAdapter";
 
-    private final List<Task> mValues;
+    private final List<ListTasksQuery.Item> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyTaskRecyclerViewAdapter(List<Task> items, OnListFragmentInteractionListener listener) {
+    public MyTaskRecyclerViewAdapter(List<ListTasksQuery.Item> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -43,8 +39,8 @@ public class MyTaskRecyclerViewAdapter extends RecyclerView.Adapter<MyTaskRecycl
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mTaskTitleView.setText(mValues.get(position).getTitle());
-        holder.mTaskBodyView.setText(mValues.get(position).getBody());
+        holder.mTaskTitleView.setText(mValues.get(position).title());
+        holder.mTaskBodyView.setText(mValues.get(position).body());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +64,7 @@ public class MyTaskRecyclerViewAdapter extends RecyclerView.Adapter<MyTaskRecycl
         public final View mView;
         public final TextView mTaskTitleView;
         public final TextView mTaskBodyView;
-        public Task mItem;
+        public ListTasksQuery.Item mItem;
 
         public ViewHolder(View view) {
             super(view);

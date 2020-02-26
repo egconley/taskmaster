@@ -8,12 +8,24 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.egconley.taskmaster.content.TaskContent;
-import com.egconley.taskmaster.content.Task;
+import com.amazonaws.amplify.generated.graphql.ListTasksQuery;
+import com.amazonaws.mobile.config.AWSConfiguration;
+import com.amazonaws.mobileconnectors.appsync.AWSAppSyncClient;
+import com.amazonaws.mobileconnectors.appsync.fetcher.AppSyncResponseFetchers;
+import com.apollographql.apollo.GraphQLCall;
+import com.apollographql.apollo.api.Response;
+import com.apollographql.apollo.exception.ApolloException;
+
+import java.util.List;
+
+import javax.annotation.Nonnull;
 
 /**
  * A fragment representing a list of Items.
@@ -22,6 +34,9 @@ import com.egconley.taskmaster.content.Task;
  * interface.
  */
 public class TaskFragment extends Fragment {
+
+    private AWSAppSyncClient mAWSAppSyncClient;
+    RecyclerView recyclerView;
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -60,16 +75,22 @@ public class TaskFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_task_list, container, false);
 
+        // make server accessible
+        mAWSAppSyncClient = AWSAppSyncClient.builder()
+                .context(view.getContext().getApplicationContext())
+                .awsConfiguration(new AWSConfiguration(view.getContext().getApplicationContext()))
+                .build();
+
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyTaskRecyclerViewAdapter(TaskContent.TASK_LIST, mListener));
+//            recyclerView.setAdapter(new MyTaskRecyclerViewAdapter(TaskContent.TASK_LIST, mListener));
         }
         return view;
     }
@@ -84,6 +105,32 @@ public class TaskFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        mAWSAppSyncClient.query(ListTasksQuery.builder().build()).responseFetcher(AppSyncResponseFetchers.NETWORK_FIRST)
+                .enqueue(new GraphQLCall.Callback<ListTasksQuery.Data>() {
+                    @Override
+                    public void onResponse(@Nonnull Response<ListTasksQuery.Data> response) {
+                        final List<ListTasksQuery.Item> dbTasks = response.data().listTasks().items();
+
+                        Handler threadHandler = new Handler(Looper.getMainLooper()) {
+                            public void handleMessage(Message msg) {
+                                recyclerView.setAdapter(new MyTaskRecyclerViewAdapter(dbTasks, mListener));
+
+                            }
+                        };
+                        threadHandler.obtainMessage().sendToTarget();
+                    }
+
+                    @Override
+                    public void onFailure(@Nonnull ApolloException e) {
+
+                    }
+                });
     }
 
     @Override
@@ -104,6 +151,6 @@ public class TaskFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Task task);
+        void onListFragmentInteraction(ListTasksQuery.Item task);
     }
 }

@@ -36,33 +36,34 @@ public class AddATask extends AppCompatActivity {
                 .awsConfiguration(new AWSConfiguration(getApplicationContext()))
                 .build();
 
-        EditText newTaskTitle = findViewById(R.id.addTaskName);
-        EditText newTaskBody = findViewById(R.id.addTaskBody);
-
-        CreateTaskInput input = CreateTaskInput.builder()
-                .title(newTaskTitle.getText().toString())
-                .body(newTaskBody.getText().toString())
-                .state("new")
-                .build();
-
-        mAWSAppSyncClient.mutate(CreateTaskMutation.builder().input(input).build()).enqueue(
-                new GraphQLCall.Callback<CreateTaskMutation.Data>() {
-                    @Override
-                    public void onResponse(@Nonnull Response<CreateTaskMutation.Data> response) {
-                        Log.e(TAG, response.data().toString());
-                    }
-
-                    @Override
-                    public void onFailure(@Nonnull ApolloException e) {
-                        Log.e(TAG, "create task mutation failure!  :(");
-                    }
-                }
-        );
         Button button3 = findViewById(R.id.button3);
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EditText newTaskTitle = findViewById(R.id.addTaskName);
+                EditText newTaskBody = findViewById(R.id.addTaskBody);
+
+                CreateTaskInput input = CreateTaskInput.builder()
+                        .title(newTaskTitle.getText().toString())
+                        .body(newTaskBody.getText().toString())
+                        .state("new")
+                        .build();
+
+                mAWSAppSyncClient.mutate(CreateTaskMutation.builder().input(input).build()).enqueue(
+                        new GraphQLCall.Callback<CreateTaskMutation.Data>() {
+                            @Override
+                            public void onResponse(@Nonnull Response<CreateTaskMutation.Data> response) {
+                                Log.i(TAG, response.data().toString());
+                            }
+
+                            @Override
+                            public void onFailure(@Nonnull ApolloException e) {
+                                Log.i(TAG, "create task mutation failure!  :(");
+                            }
+                        }
+                );
+                finish();
                 Toast toast = Toast.makeText(AddATask.this, "Submitted!", Toast.LENGTH_SHORT);
                 toast.show();
             }
