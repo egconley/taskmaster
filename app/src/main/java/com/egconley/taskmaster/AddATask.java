@@ -9,6 +9,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,13 +32,14 @@ import javax.annotation.Nonnull;
 
 import type.CreateTaskInput;
 
-public class AddATask extends AppCompatActivity {
+public class AddATask extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     String TAG = "egc.addATask";
 
     private AWSAppSyncClient mAWSAppSyncClient;
     RecyclerView recyclerView;
     ArrayAdapter<String> adapter;
+    String selectedTeamID = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +64,14 @@ public class AddATask extends AppCompatActivity {
                     spinnerTeams[idx] = team.name();
                     idx++;
                 }
-                
+
                 adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, spinnerTeams);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                 Handler threadHandler = new Handler(Looper.getMainLooper()) {
                     public void handleMessage(Message msg) {
                         spinner.setAdapter(adapter);
+//                        spinner.setOnItemSelectedListener(AddATask.this);
                     }
                 };
                 threadHandler.obtainMessage().sendToTarget();
@@ -88,10 +91,14 @@ public class AddATask extends AppCompatActivity {
                 EditText newTaskTitle = findViewById(R.id.addTaskName);
                 EditText newTaskBody = findViewById(R.id.addTaskBody);
 
+
+                String selectTeam = spinner.getSelectedItem().toString();
+
                 CreateTaskInput input = CreateTaskInput.builder()
                         .title(newTaskTitle.getText().toString())
                         .body(newTaskBody.getText().toString())
                         .state("new")
+                        .taskTeamId(teamHashmap.get(selectTeam))
                         .build();
 
                 mAWSAppSyncClient.mutate(CreateTaskMutation.builder().input(input).build()).enqueue(
@@ -112,5 +119,15 @@ public class AddATask extends AppCompatActivity {
                 toast.show();
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
