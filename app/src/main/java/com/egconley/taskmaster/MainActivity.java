@@ -12,12 +12,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.amazonaws.amplify.generated.graphql.ListTasksQuery;
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.appsync.AWSAppSyncClient;
-import com.egconley.taskmaster.content.Task;
-
-import java.util.Iterator;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements TaskFragment.OnListFragmentInteractionListener {
 
@@ -131,13 +128,13 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
     }
 
     @Override
-    public void onListFragmentInteraction(Task task) {
+    public void onListFragmentInteraction(ListTasksQuery.Item task) {
         Intent goToTaskDetail = new Intent(MainActivity.this, TaskDetail.class);
 
-        goToTaskDetail.putExtra("taskName", task.getTitle());
-        goToTaskDetail.putExtra("taskBody", task.getBody());
+        goToTaskDetail.putExtra("taskName", task.title());
+        goToTaskDetail.putExtra("taskBody", task.body());
 
-        Log.v(TAG, task.getTitle());
+        Log.v(TAG, task.title());
 
         startActivity(goToTaskDetail);
 
