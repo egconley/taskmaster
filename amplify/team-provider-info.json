@@ -10,6 +10,11 @@
             "StackName": "amplify-taskmaster-taskenv-144258",
             "StackId": "arn:aws:cloudformation:us-west-2:217618407332:stack/amplify-taskmaster-taskenv-144258/2e67e520-5820-11ea-813c-0266c276fda0",
             "AmplifyAppId": "d8q1bc4s00h8i"
+        },
+        "categories": {
+            "auth": {
+                "taskmaster5447793c": {}
+            }
         }
     }
 }
