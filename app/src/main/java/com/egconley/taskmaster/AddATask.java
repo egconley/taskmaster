@@ -41,6 +41,8 @@ public class AddATask extends AppCompatActivity implements AdapterView.OnItemSel
     ArrayAdapter<String> adapter;
     String selectedTeamID = "";
 
+    HashMap<String, String> teamHashmap = new HashMap<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +56,7 @@ public class AddATask extends AppCompatActivity implements AdapterView.OnItemSel
         final Spinner spinner = findViewById(R.id.spinner);
         final String[] spinnerTeams = new String[3];
         ListTeamsQuery teams = ListTeamsQuery.builder().build();
-        final HashMap<String, String> teamHashmap = new HashMap<>();
+
         mAWSAppSyncClient.query(teams).enqueue(new GraphQLCall.Callback<ListTeamsQuery.Data>() {
             @Override
             public void onResponse(@Nonnull Response<ListTeamsQuery.Data> response) {

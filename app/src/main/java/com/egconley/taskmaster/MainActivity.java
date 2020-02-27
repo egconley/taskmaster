@@ -62,50 +62,6 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
                 startActivity(goToAllTasks);
             }
         });
-
-//        final Button task1Button = findViewById(R.id.task1Button);
-//
-//        task1Button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent goToTaskDetail = new Intent(MainActivity.this, TaskDetail.class);
-//
-//                goToTaskDetail.putExtra("taskName", task1Button.getText().toString());
-//
-//                Log.v(TAG, task1Button.getText().toString());
-//
-//                startActivity(goToTaskDetail);
-//            }
-//        });
-//
-//        final Button task2Button = findViewById(R.id.task2Button);
-//
-//        task2Button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent goToTaskDetail = new Intent(MainActivity.this, TaskDetail.class);
-//                goToTaskDetail.putExtra("taskName", task2Button.getText().toString());
-//
-//                Log.v(TAG, task2Button.getText().toString());
-//
-//                startActivity(goToTaskDetail);
-//            }
-//        });
-//
-//        final Button task3Button = findViewById(R.id.task3Button);
-//
-//        task3Button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent goToTaskDetail = new Intent(MainActivity.this, TaskDetail.class);
-//
-//                goToTaskDetail.putExtra("taskName", task3Button.getText().toString());
-//
-//                Log.v(TAG, task3Button.getText().toString());
-//
-//                startActivity(goToTaskDetail);
-//            }
-//        });
     }
 
     @Override
@@ -123,6 +79,12 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
 
         if (username!=null) {
             myTasksHeader.setText(myTasksHeaderText);
+        }
+
+        String team = sharedPreferences.getString("team", null);
+
+        if (team!=null) {
+
         }
 
     }
