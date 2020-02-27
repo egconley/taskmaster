@@ -47,5 +47,10 @@ Android app that allows user to keep track of tasks.
     - [X] second entity for a team, which has a name and a list of tasks
     - [X] updated tasks to be owned by a team
     - [X] hardcoded three teams by running a mutation three times
-
+    
+## 2/26/2020
+- [X] Settings
+    - [X] ability for user choose their team on the Settings page
+- [X] Homepage
+    - [X] only tasks associate with user-select team display on homepage
     
