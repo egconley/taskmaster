@@ -1,6 +1,7 @@
 package com.egconley.taskmaster;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,9 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.amazonaws.amplify.generated.graphql.ListTasksQuery;
 import com.amazonaws.mobile.config.AWSConfiguration;
@@ -23,6 +26,7 @@ import com.apollographql.apollo.GraphQLCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -81,6 +85,15 @@ public class TaskFragment extends Fragment {
                 .awsConfiguration(new AWSConfiguration(view.getContext().getApplicationContext()))
                 .build();
 
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(view.getContext().getApplicationContext());
+
+        String team = sharedPreferences.getString("team", null);
+
+        if (team!=null) {
+
+        }
+
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -110,16 +123,28 @@ public class TaskFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(getContext());
+
+        final String team = sharedPreferences.getString("team", null);
+        System.out.println("TEAAAAAMMMM!!!!! " + team);
 
         mAWSAppSyncClient.query(ListTasksQuery.builder().build()).responseFetcher(AppSyncResponseFetchers.NETWORK_FIRST)
                 .enqueue(new GraphQLCall.Callback<ListTasksQuery.Data>() {
                     @Override
                     public void onResponse(@Nonnull Response<ListTasksQuery.Data> response) {
                         final List<ListTasksQuery.Item> dbTasks = response.data().listTasks().items();
+                        final List<ListTasksQuery.Item> dbTeamTasks = new LinkedList<>();
 
+                        // only show tasks associated with user-selected team
+                        for (ListTasksQuery.Item task : dbTasks) {
+                            if (task.team()!=null && task.team().name().equals(team)) {
+                                dbTeamTasks.add(task);
+                            }
+                        }
                         Handler threadHandler = new Handler(Looper.getMainLooper()) {
                             public void handleMessage(Message msg) {
-                                recyclerView.setAdapter(new MyTaskRecyclerViewAdapter(dbTasks, mListener));
+                                recyclerView.setAdapter(new MyTaskRecyclerViewAdapter(dbTeamTasks, mListener));
 
                             }
                         };

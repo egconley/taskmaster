@@ -15,11 +15,18 @@
         android:autofillHints=""
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="username"
         app:layout_constraintEnd_toStartOf="@+id/saveUsername"
         app:layout_constraintHorizontal_bias="0.647"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView5"
@@ -42,4 +49,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/enterUsername"
         app:srcCompat="@android:drawable/ic_menu_save" />
+
+    <ImageButton
+        android:id="@+id/saveTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="?android:attr/panelBackground"
+        android:tint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner"
+        app:layout_constraintStart_toStartOf="@+id/saveUsername"
+        app:srcCompat="@android:drawable/ic_menu_save" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Select your team:"
+        app:layout_constraintStart_toStartOf="@+id/enterUsername"
+        app:layout_constraintTop_toBottomOf="@+id/enterUsername" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Username:"
+        app:layout_constraintBottom_toTopOf="@+id/enterUsername"
+        app:layout_constraintStart_toStartOf="@+id/enterUsername" />
 </androidx.constraintlayout.widget.ConstraintLayout>
